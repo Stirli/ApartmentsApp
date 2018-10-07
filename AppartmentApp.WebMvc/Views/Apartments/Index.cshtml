@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AppartmentApp.Domain.Apartment>
+
+@{
+	ViewData["Title"] = "Квартиры";
+}
+
+<h2>Квартиры</h2>
+
+<table class="table">
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.ActionLink(item.Address, "Details", "Apartments", new { id = item.Id })
+				</td>
+			</tr>}
+	</tbody>
+</table>
+<div>
+	@for (int i = 1; i <= ViewBag.LastPage; i++)
+	{
+
+		if (i == ViewBag.Page)
+		{
+			<b>@i.ToString()</b>
+		}
+		else
+		{
+			@Html.ActionLink(i.ToString(), "Index", "Apartments", new { page = i })
+		}
+	}
+</div>
