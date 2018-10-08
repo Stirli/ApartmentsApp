@@ -1,8 +1,8 @@
-﻿using AppartmentApp.Domain.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ApartmentApp.Domain.Interfaces;
 
-namespace AppartmentApp.Domain.SimpleRepo
+namespace ApartmentApp.Domain.SimpleRepo
 {
     public class Repository : IRepository<Apartment>
     {

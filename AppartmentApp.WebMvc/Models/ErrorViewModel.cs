@@ -1,6 +1,6 @@
 using System;
 
-namespace AppartmentApp.WebMvc.Models
+namespace ApartmentApp.WebMvc.Models
 {
     public class ErrorViewModel
     {

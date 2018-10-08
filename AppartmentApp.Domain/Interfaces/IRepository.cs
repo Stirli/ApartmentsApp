@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AppartmentApp.Domain.Interfaces
+namespace ApartmentApp.Domain.Interfaces
 {
     public interface IRepository<T>
     {

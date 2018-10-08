@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppartmentApp.Domain
+namespace ApartmentApp.Domain
 {
     public class Apartment
     {

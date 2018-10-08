@@ -1,11 +1,11 @@
-﻿using AppartmentApp.Domain;
-using AppartmentApp.Domain.Interfaces;
-using AppartmentApp.Domain.SimpleRepo;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using ApartmentApp.Domain;
+using ApartmentApp.Domain.Interfaces;
+using ApartmentApp.Domain.SimpleRepo;
 
-namespace AppartmentApp.WebMvc.Controllers
+namespace ApartmentApp.WebMvc.Controllers
 {
     public class ApartmentsController : Controller
     {

@@ -10,11 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppartmentApp.Domain\AppartmentApp.Domain.csproj" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
+    <ProjectReference Include="..\AppartmentApp.Domain\ApartmentApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
