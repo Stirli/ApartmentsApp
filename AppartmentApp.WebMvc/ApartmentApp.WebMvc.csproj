@@ -17,4 +17,8 @@
     <ProjectReference Include="..\AppartmentApp.Domain\ApartmentApp.Domain.csproj" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="setx path &quot;%ApartmentsAppSrc%; $(SolutionDir)&quot;" />
+  </Target>
+
 </Project>

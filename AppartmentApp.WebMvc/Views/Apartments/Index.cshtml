@@ -6,7 +6,7 @@
 
 <h2>Квартиры</h2>
 
-<table class="table">
+<table id="atable" class="table">
 	<tbody>
 		@foreach (var item in Model)
 		{
@@ -18,16 +18,39 @@
 	</tbody>
 </table>
 <div>
-	@for (int i = 1; i <= ViewBag.LastPage; i++)
-	{
+    @for (int i = 1; i <= ViewBag.LastPage; i++)
+    {
 
-		if (i == ViewBag.Page)
-		{
-			<b>@i.ToString()</b>
-		}
-		else
-		{
-			@Html.ActionLink(i.ToString(), "Index", "Apartments", new { page = i })
-		}
-	}
+        if (i == ViewBag.Page)
+        {
+            <b>@i.ToString()</b>
+        }
+        else
+        {
+            <a asp-action="Index" asp-route-page="@i"> @i </a>
+        }
+    }
+</div>
+<div>
+    <select id="pagesizeselector">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+    <script type="text/javascript">
+        window.onload = function () {
+            console.log("hello");
+            $("#pagesizeselector").val(@ViewBag.PageSize);
+            $("#pagesizeselector").change(function(e) {
+                window.location.href = location.protocol +
+                    "//" +
+                    window.location.host +
+                    "@(Url.Action("ChangePageSize"))" +
+                    "?newSize=" +
+                    $("#pagesizeselector").val();
+            });
+        }
+    </script>
 </div>
