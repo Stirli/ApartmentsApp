@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="setx path &quot;%ApartmentsAppSrc%; $(SolutionDir)&quot;" />
+    <Exec Command="setx ApartmentsAppSrc $(SolutionDir)" />
   </Target>
 
 </Project>
