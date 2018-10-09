@@ -2,7 +2,9 @@
 using ApartmentApp.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using ApartmentApp.Domain.SimpleRepo;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace ApartmentApp.WebMvc.Controllers
 {
@@ -21,13 +23,21 @@ namespace ApartmentApp.WebMvc.Controllers
         // GET: Apartments
         public ActionResult Index(int? page)
         {
+            int size = 5;
+            if (Request.Cookies.ContainsKey("pageSize"))
+            {
+                int.TryParse(Request.Cookies["pageSize"], out size);
+            }
+            else
+            {
+                Response.Cookies.Append("pageSize",size.ToString());
+            }
+
             ViewBag.Page = page ?? 1;
-            ViewBag.PageSize = apRep.PageSize;
-            ViewBag.Lastpage = Math.Ceiling((double)apRep.Count / apRep.PageSize);
-            return View(apRep.Page(page ?? 1));
+            ViewBag.Lastpage = Math.Ceiling((double)apRep.Count / size);
+            return View(apRep.EnumerateAll().Skip(size * ((page ?? 1) - 1)).Take(size).ToList());
         }
 
-        // GET: Apartments/Details/5
         public ActionResult Details(int id)
         {
             return View(apRep[id]);
@@ -35,7 +45,7 @@ namespace ApartmentApp.WebMvc.Controllers
 
         public ActionResult ChangePageSize(int newSize)
         {
-            apRep.PageSize = newSize;
+            Response.Cookies.Append("pageSize", newSize.ToString());
             return RedirectToAction("Index");
         }
     }

@@ -244,7 +244,7 @@ namespace ApartmentApp.Domain
             Random r = new Random();
             string[] streets = { "ул. ", "пер. ", "просп. " };
             List<Apartment> apartments = new List<Apartment>();
-            int count = r.Next(3, 1000);
+            int count = r.Next(3, 200);
             for (int i = 0; i < count; i++)
             {
                 apartments.Add(new Apartment()

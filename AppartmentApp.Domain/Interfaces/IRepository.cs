@@ -4,8 +4,7 @@ namespace ApartmentApp.Domain.Interfaces
 {
     public interface IRepository<T>
     {
-        IEnumerable<T> Page(int page);
-        int PageSize { get; set; }
+        IEnumerable<Apartment> EnumerateAll();
         int Count { get; }
 
         T this[int index] { get; }

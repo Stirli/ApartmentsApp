@@ -57,7 +57,10 @@ namespace ApartmentApp.WebMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Apartments}/{action=Index}/{id?}");
+                    template: "{controller=Apartments}/{action=Index}/{page?}");
+                routes.MapRoute(
+                    name: "default2",
+                    template: "{controller=Apartments}/{action=Details}/{id?}");
             });
         }
     }

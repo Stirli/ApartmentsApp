@@ -11,9 +11,9 @@
 		@foreach (var item in Model)
 		{
 			<tr>
-				<td>
-					@Html.ActionLink(item.Address, "Details", "Apartments", new { id = item.Id })
-				</td>
+			    <td>
+			        <a asp-action="Details" asp-route-id="@item.Id">@item.Address</a>
+			    </td>
 			</tr>}
 	</tbody>
 </table>
@@ -42,7 +42,7 @@
     <script type="text/javascript">
         window.onload = function () {
             console.log("hello");
-            $("#pagesizeselector").val(@ViewBag.PageSize);
+            $("#pagesizeselector").val(@Context.Request.Cookies["pageSize"]);
             $("#pagesizeselector").change(function(e) {
                 window.location.href = location.protocol +
                     "//" +
