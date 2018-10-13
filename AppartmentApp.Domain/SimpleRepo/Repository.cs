@@ -17,9 +17,16 @@ namespace ApartmentApp.Domain.SimpleRepo
         {
             return _appartments;
         }
-        public int Count => _appartments.Count;
+        
+        int IRepository<Apartment>.Count()
+        {
+            return _appartments.Count;
+        }
 
-        public Apartment this[int index] => _appartments.FirstOrDefault(a => a.Id == index);
+        public Apartment GetById(int id)
+        {
+            return _appartments.FirstOrDefault(a => a.Id == id);
+        }
 
         public IEnumerable<Apartment> Take(int size, int? page)
         {

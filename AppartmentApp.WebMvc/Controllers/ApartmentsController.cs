@@ -34,14 +34,14 @@ namespace ApartmentApp.WebMvc.Controllers
             }
 
             ViewBag.Page = page ?? 1;
-            ViewBag.Lastpage = Math.Ceiling((double)apRep.Count / size);
+            ViewBag.Lastpage = Math.Ceiling((double)apRep.Count() / size);
             return View(apRep.Take(size, page).ToList());
         }
 
 
         public ActionResult Details(int id)
         {
-            return View(apRep[id]);
+            return View(apRep.GetById(id));
         }
 
         public ActionResult ChangePageSize(int newSize)
