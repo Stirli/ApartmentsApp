@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using ApartmentApp.Domain.Interfaces;
 using ApartmentApp.Domain.SimpleRepo;
@@ -9,7 +10,7 @@ namespace ApartmentApp.Domain
    public static class RepoFactory
     {
 
-        private static string[] _pics =
+        public static string[] _pics =
         {
             "https://im0-tub-by.yandex.net/i?id=30c79ccbfa0a9ea0c3aaf307a5a95313&n=13",
 
@@ -239,12 +240,12 @@ namespace ApartmentApp.Domain
         private static IRepository<Apartment> _defaultRepo;
         public static IRepository<Apartment> DefaultRepo => _defaultRepo ?? (_defaultRepo = MakeRandomRepo());
 
-        private static IRepository<Apartment> MakeRandomRepo()
+        public static IRepository<Apartment> MakeRandomRepo()
         {
             Random r = new Random();
             string[] streets = { "ул. ", "пер. ", "просп. " };
             List<Apartment> apartments = new List<Apartment>();
-            int count = r.Next(3, 200);
+            int count = r.Next(3, 100);
             for (int i = 0; i < count; i++)
             {
                 apartments.Add(new Apartment()
@@ -253,10 +254,81 @@ namespace ApartmentApp.Domain
                     Address = $"{streets[r.Next(0, 2)]} Рандом{r.Next(1, 100)}, дом {r.Next(1, 500)}, кв. {r.Next(1, 500)}",
                     Cost = r.Next(100000, 100000000),
                     RoomsCount = r.Next(1, 7),
-                    ImgSrc = _pics[r.Next(0, _pics.Length - 1)]
+                    ImgSrc = $"/images/app/{r.Next(1,100)}.jpg"
                 });
             }
             return new Repository(apartments: apartments);
+        }
+
+        public static IRepository<Apartment> MakeHardcoded7ElementsRepository()
+        {
+            var i = 0;
+            //WebClient wc = new WebClient();
+            //for ( i = 0; i < RepoFactory._pics.Length; i++)
+            //{
+            //    var picUrl = RepoFactory._pics[i];
+            //    var picPath = $"E:\\GIT\\AppartmentApp\\AppartmentApp.WebMvc\\wwwroot\\images\\{i}.jpg";
+            //    wc.DownloadFile(picUrl, picPath);
+            //}
+            //i = 0;
+            return new Repository(new List<Apartment>
+            {
+                new Apartment
+                {
+                    Id = 1,
+                    Address = "улица Кальварийская, дом 50, кв. 5",
+                    RoomsCount = 3,
+                    Cost = 10500,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 2,
+                    Address = "улица Болотная, дом 21",
+                    RoomsCount = 7,
+                    Cost = 10500500,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 3,
+                    Address = "переулок Загадочный, дом 165, кв. 35",
+                    RoomsCount = 1,
+                    Cost = 10500500,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 4,
+                    Address = "Короля д. 47 кв. 2",
+                    RoomsCount = 3,
+                    Cost = 123456,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 5,
+                    Address = "Немига д. 10 кв. 28",
+                    RoomsCount = 2,
+                    Cost = 315479,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 6,
+                    Address = "Гебелева улица д. 6/2 кв. 6",
+                    RoomsCount = 3,
+                    Cost = 4235789,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                },
+                new Apartment
+                {
+                    Id = 7,
+                    Address = "Романовская Слобода д. 7 кв. 40",
+                    RoomsCount = 4,
+                    Cost = 7862123,
+                    ImgSrc = $"/images/app/{++i}.jpg"
+                }});
         }
     }
 }

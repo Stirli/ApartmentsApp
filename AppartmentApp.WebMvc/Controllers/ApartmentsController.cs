@@ -10,7 +10,7 @@ namespace ApartmentApp.WebMvc.Controllers
 {
     public class ApartmentsController : Controller
     {
-        private IRepository<Apartment> apRep = RepoFactory.DefaultRepo;
+        private IRepository<Apartment> apRep = RepoFactory.MakeHardcoded7ElementsRepository();
 
         public ApartmentsController(IRepository<Apartment> apRep = null)
         {
@@ -35,8 +35,9 @@ namespace ApartmentApp.WebMvc.Controllers
 
             ViewBag.Page = page ?? 1;
             ViewBag.Lastpage = Math.Ceiling((double)apRep.Count / size);
-            return View(apRep.EnumerateAll().Skip(size * ((page ?? 1) - 1)).Take(size).ToList());
+            return View(apRep.Take(size, page).ToList());
         }
+
 
         public ActionResult Details(int id)
         {

@@ -20,6 +20,11 @@ namespace ApartmentApp.Domain.SimpleRepo
         public int Count => _appartments.Count;
 
         public Apartment this[int index] => _appartments.FirstOrDefault(a => a.Id == index);
+
+        public IEnumerable<Apartment> Take(int size, int? page)
+        {
+            return EnumerateAll().Skip(size * ((page ?? 1) - 1)).Take(size);
+        }
     }
 
 }
